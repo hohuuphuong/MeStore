@@ -1,0 +1,146 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-bs5\node_modules\jquery\AUTHORS.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-bs5\node_modules\jquery\external\sizzle\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-bs5\node_modules\jquery\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-buttons-bs5\node_modules\jquery\AUTHORS.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-buttons-bs5\node_modules\jquery\external\sizzle\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-buttons-bs5\node_modules\jquery\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-buttons\node_modules\jquery\AUTHORS.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-buttons\node_modules\jquery\external\sizzle\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-buttons\node_modules\jquery\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-keytable-bs5\node_modules\jquery\AUTHORS.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-keytable-bs5\node_modules\jquery\external\sizzle\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-keytable-bs5\node_modules\jquery\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-keytable\node_modules\jquery\AUTHORS.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-keytable\node_modules\jquery\external\sizzle\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-keytable\node_modules\jquery\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-responsive-bs5\node_modules\jquery\AUTHORS.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-responsive-bs5\node_modules\jquery\external\sizzle\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-responsive-bs5\node_modules\jquery\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-responsive\node_modules\jquery\AUTHORS.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-responsive\node_modules\jquery\external\sizzle\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-responsive\node_modules\jquery\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-select-bs5\node_modules\jquery\AUTHORS.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-select-bs5\node_modules\jquery\external\sizzle\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-select-bs5\node_modules\jquery\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-select\node_modules\jquery\AUTHORS.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-select\node_modules\jquery\external\sizzle\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net-select\node_modules\jquery\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net\node_modules\jquery\AUTHORS.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net\node_modules\jquery\external\sizzle\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\datatables.net\node_modules\jquery\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\jquery.counterup\node_modules\jquery\AUTHORS.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\jquery.counterup\node_modules\jquery\external\sizzle\LICENSE.txt" />
+    <Content Include="wwwroot\AdminAssets\libs\jquery.counterup\node_modules\jquery\LICENSE.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-bs5\node_modules\jquery\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-bs5\node_modules\jquery\external\sizzle\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-bs5\node_modules\jquery\src\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-bs5\types\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-buttons-bs5\node_modules\jquery\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-buttons-bs5\node_modules\jquery\external\sizzle\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-buttons-bs5\node_modules\jquery\src\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-buttons-bs5\types\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-buttons\node_modules\jquery\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-buttons\node_modules\jquery\external\sizzle\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-buttons\node_modules\jquery\src\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-buttons\types\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-keytable-bs5\node_modules\jquery\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-keytable-bs5\node_modules\jquery\external\sizzle\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-keytable-bs5\node_modules\jquery\src\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-keytable\node_modules\jquery\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-keytable\node_modules\jquery\external\sizzle\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-keytable\node_modules\jquery\src\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-responsive-bs5\node_modules\jquery\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-responsive-bs5\node_modules\jquery\external\sizzle\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-responsive-bs5\node_modules\jquery\src\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-responsive\node_modules\jquery\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-responsive\node_modules\jquery\external\sizzle\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-responsive\node_modules\jquery\src\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-select-bs5\node_modules\jquery\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-select-bs5\node_modules\jquery\external\sizzle\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-select-bs5\node_modules\jquery\src\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-select-bs5\types\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-select\node_modules\jquery\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-select\node_modules\jquery\external\sizzle\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-select\node_modules\jquery\src\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net-select\types\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net\node_modules\jquery\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net\node_modules\jquery\external\sizzle\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net\node_modules\jquery\src\" />
+    <Folder Include="wwwroot\AdminAssets\libs\datatables.net\types\" />
+    <Folder Include="wwwroot\AdminAssets\libs\flatpickr\types\" />
+    <Folder Include="wwwroot\AdminAssets\libs\flatpickr\utils\" />
+    <Folder Include="wwwroot\AdminAssets\libs\jquery.counterup\demo\" />
+    <Folder Include="wwwroot\AdminAssets\libs\jquery.counterup\node_modules\jquery\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\jquery.counterup\node_modules\jquery\external\sizzle\dist\" />
+    <Folder Include="wwwroot\AdminAssets\libs\jquery.counterup\node_modules\jquery\src\" />
+    <Folder Include="wwwroot\AdminAssets\libs\moment\src\" />
+    <Folder Include="wwwroot\AdminAssets\libs\swiper\angular\angular\src\" />
+    <Folder Include="wwwroot\AdminAssets\libs\swiper\angular\esm2020\angular\src\" />
+    <Folder Include="wwwroot\AdminAssets\libs\swiper\types\modules\" />
+    <Folder Include="wwwroot\AdminAssets\libs\waypoints\src\" />
+    <Folder Include="wwwroot\AdminAssets\libs\waypoints\test\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-bs5\node_modules\jquery\external\sizzle\sizzle.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-bs5\node_modules\jquery\jquery.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-bs5\node_modules\jquery\jquery.slim.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-buttons-bs5\node_modules\jquery\external\sizzle\sizzle.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-buttons-bs5\node_modules\jquery\jquery.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-buttons-bs5\node_modules\jquery\jquery.slim.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-buttons\node_modules\jquery\external\sizzle\sizzle.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-buttons\node_modules\jquery\jquery.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-buttons\node_modules\jquery\jquery.slim.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-keytable-bs5\node_modules\jquery\external\sizzle\sizzle.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-keytable-bs5\node_modules\jquery\jquery.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-keytable-bs5\node_modules\jquery\jquery.slim.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-keytable\node_modules\jquery\external\sizzle\sizzle.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-keytable\node_modules\jquery\jquery.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-keytable\node_modules\jquery\jquery.slim.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-responsive-bs5\node_modules\jquery\external\sizzle\sizzle.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-responsive-bs5\node_modules\jquery\jquery.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-responsive-bs5\node_modules\jquery\jquery.slim.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-responsive\node_modules\jquery\external\sizzle\sizzle.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-responsive\node_modules\jquery\jquery.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-responsive\node_modules\jquery\jquery.slim.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-select-bs5\node_modules\jquery\external\sizzle\sizzle.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-select-bs5\node_modules\jquery\jquery.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-select-bs5\node_modules\jquery\jquery.slim.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-select\node_modules\jquery\external\sizzle\sizzle.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-select\node_modules\jquery\jquery.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net-select\node_modules\jquery\jquery.slim.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net\node_modules\jquery\external\sizzle\sizzle.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net\node_modules\jquery\jquery.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\datatables.net\node_modules\jquery\jquery.slim.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\jquery.counterup\node_modules\jquery\external\sizzle\sizzle.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\jquery.counterup\node_modules\jquery\jquery.min.js" />
+    <None Include="wwwroot\AdminAssets\libs\jquery.counterup\node_modules\jquery\jquery.slim.min.js" />
+  </ItemGroup>
+
+</Project>

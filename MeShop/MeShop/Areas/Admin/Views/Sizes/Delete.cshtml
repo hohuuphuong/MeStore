@@ -1,0 +1,19 @@
+﻿@model MeShop.Models.Size
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<hr />
+<h4>Xác nhận xóa?</h4>
+<hr />
+<div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        <a asp-action="index">Trở lại</a>
+    </form>
+</div>

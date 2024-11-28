@@ -1,0 +1,66 @@
+﻿@model IEnumerable<MeShop.Models.Size>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+    <div class="flex-grow-1">
+        <h4 class="fs-18 fw-semibold m-0">Kích thước sản phẩm</h4>
+    </div>
+
+    <div class="text-end">
+        <ol class="breadcrumb m-0 py-0">
+            <li class="breadcrumb-item"><a asp-area="admin" asp-controller="products" asp-action="index">Sản phẩm</a></li>
+            <li class="breadcrumb-item active">Kích thước sản phẩm</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div id="fixed-header-datatable_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div id="fixed-header-datatable_filter" class="dataTables_filter">
+                                <a asp-area="admin" asp-controller="sizes" asp-action="create"><button type="button" class="btn btn-primary"><i class="mdi mdi-plus"></i> Kích thước sản phẩm</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="fixed-header-datatable" class="table table-striped dt-responsive nowrap table-striped w-100 dataTable no-footer dtr-inline" aria-describedby="fixed-header-datatable_info" style="width: 1264px;">
+                                <thead>
+                                    <tr>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 20px;">Id</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 150px;">Tên</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 50px;">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="even">
+                                            <th scope="row">@item.Id</th>
+                                            <td>@item.Name</td>
+                                            <td>
+                                                <a asp-action="Delete" asp-route-id="@item.Id" style="color: inherit;">
+                                                    <i class="mdi mdi-trash-can-outline"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

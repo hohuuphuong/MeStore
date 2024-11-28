@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="content">
+
+    <!-- Start Content-->
+    <div class="container-xxl">
+
+        <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+            <div class="flex-grow-1">
+                <h4 class="fs-18 fw-semibold m-0">Doanh số</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-1 mb-2">
+                    <select class="form-select" id="year-select">
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024" selected>2024</option>
+                    </select>
+            </div>
+            <!-- Basic Line Chart -->
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="chart" ></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- container-fluid -->
+</div> <!-- content -->
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+    var chart;
+    async function loadSalesReport(year) {
+        const response = await fetch(`/Admin/Home/GetReportByYear?year=${year}`);
+        const data = await response.json();
+
+        var options = {
+            series: data.series,
+            chart: {
+                height: 350,
+                type: 'line',
+                zoom: {
+                    enabled: false
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'straight'
+            },
+            title: {
+                text: 'Doanh số (Triệu) theo tháng',
+                align: 'left'
+            },
+            grid: {
+                row: {
+                    colors: ['#f3f3f3', 'transparent'],
+                    opacity: 0.5
+                },
+            },
+            xaxis: {
+                categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+            },
+        };
+
+        chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    };
+
+    loadSalesReport(2024);
+
+    document.getElementById('year-select').addEventListener('change', function () {
+        if (chart) {
+            chart.destroy(); 
+        }
+        var selectedYear = this.value; 
+        loadSalesReport(selectedYear); 
+    });
+</script>

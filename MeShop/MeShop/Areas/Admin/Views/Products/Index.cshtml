@@ -1,0 +1,155 @@
+﻿@model IEnumerable<MeShop.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+    <div class="flex-grow-1">
+        <h4 class="fs-18 fw-semibold m-0">Danh sách sản phẩm</h4>
+    </div>
+
+    <div class="text-end">
+        <ol class="breadcrumb m-0 py-0">
+            <li class="breadcrumb-item"><a asp-area="admin" asp-controller="products" asp-action="index">Sản phẩm</a></li>
+            <li class="breadcrumb-item active">Danh sách sản phẩm</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div id="fixed-header-datatable_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div id="fixed-header-datatable_filter" class="dataTables_filter">
+                                <a asp-area="admin" asp-controller="products" asp-action="create"><button type="button" class="btn btn-primary">Thêm sản phẩm</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div id="fixed-header-datatable_filter" class="dataTables_filter">
+                                <form asp-action="Index">
+                                    <label>
+                                        <input name="term" value="@TempData["term"]" type="search" class="form-control form-control-sm-1" placeholder="" aria-controls="fixed-header-datatable">
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    </label>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="fixed-header-datatable" class="table table-striped dt-responsive nowrap table-striped w-100 dataTable no-footer dtr-inline" aria-describedby="fixed-header-datatable_info" style="width: 1264px;">
+                                <thead>
+                                    <tr>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 20px;">Id</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 150px;">Tên <a asp-route-orderBy="@TempData["orderbyName"]" asp-route-term="@TempData["term"]" asp-route-currentPage="1" asp-action="index"><i class="mdi mdi-sort"></i></a></th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 120px;">Danh mục  <a asp-route-orderBy="@TempData["orderbyCat"]" asp-route-term="@TempData["term"]" asp-route-currentPage="1" asp-action="index"><i class="mdi mdi-sort"></i></a></th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 120px;">Giá sản phẩm</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 150px;">Ảnh</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 120px;">Đánh giá</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 150px;">Trạng thái</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 150px;">Ngày tạo</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 50px;">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="even">
+                                            <th scope="row">@item.Id</th>
+                                            <td>@item.Name</td>
+                                            <td>@item.Product_Category?.Name</td>
+                                            <td>@String.Format("{0:N0}", item.Price)</td>
+                                            <td><img src="@Url.Content(item.Images.FirstOrDefault()?.Path)" alt="Chưa cập nhật" class="img-fluid rounded avatar-sm" /></td>
+                                            <td>@item.Rating</td>
+                                            <td>
+                                                @if (item.Active)
+                                                {
+                                                    <i data-feather="eye" style="width: 9%"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i data-feather="eye-off" style="width: 9%"></i>
+                                                }
+                                            </td>
+                                            <td>@item?.Created_At</td>
+                                            <td>
+                                                <a asp-action="Details" asp-route-id="@item.Id" style="color: inherit;">
+                                                    <i class="mdi mdi-details"></i>
+                                                </a>
+                                                <a asp-action="Edit" asp-route-id="@item.Id" style="color: inherit;">
+                                                    <i class="mdi mdi-tag-edit"></i>
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@item.Id" style="color: inherit;">
+                                                    <i class="mdi mdi-trash-can-outline"></i>
+                                                </a>
+                                               
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="dataTables_paginate paging_simple_numbers" id="fixed-header-datatable_paginate">
+                                <ul class="pagination justify-content-end mb-0">
+                                    
+                                    @if (Convert.ToInt32(TempData["currentPage"]) == 1)
+                                    {
+                                        <li class="paginate_button page-item previous disabled" id="datatable_previous">
+                                            <a aria-controls="datatable" data-dt-idx="0" class="page-link">Previous</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="paginate_button page-item previous " id="datatable_previous">
+                                            <a asp-route-term="@TempData["term"]" asp-route-orderBy="@TempData["orderBy"]" asp-route-currentPage="@(Convert.ToInt32(TempData["currentPage"])-1)" aria-controls="datatable" class="page-link">Previous</a>
+                                        </li>
+                                    }
+                                    @for (int i = 1; i <= Convert.ToInt32(TempData["totalPages"]); i++)
+                                    {
+                                        if (Convert.ToInt32(TempData["currentPage"]) == i)
+                                        {
+                                            <li class="paginate_button page-item active" aria-current="page">
+                                                <a aria-controls="datatable" class="page-link">@i</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="paginate_button page-item ">
+                                                <a asp-route-term="@TempData["term"]" asp-route-orderBy="@TempData["orderBy"]" asp-route-currentPage="@i" aria-controls="datatable" class="page-link">@i</a>
+                                            </li>
+                                        }
+                                    }
+                                    @if (TempData["currentPage"].ToString() == TempData["totalPages"].ToString())
+                                    {
+                                        <li class="paginate_button page-item next disabled" id="datatable_next">
+                                            <a aria-controls="datatable" class="page-link">Next</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="paginate_button page-item next" id="datatable_next">
+                                            <a asp-route-term="@TempData["term"]" asp-route-orderBy="@TempData["orderBy"]" asp-route-currentPage="@(Convert.ToInt32(TempData["currentPage"])+1)" aria-controls="datatable" class="page-link">Next</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<hr />
+<h4>Xác nhận xóa?</h4>
+<hr />
+<div>
+    <form asp-action="DeleteDetails">
+        <input type="hidden" name="product_id" value="@ViewData["product_id"]" readonly/>
+        <input type="hidden" name="size_id" value="@ViewData["size_id"]" readonly/>
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        <a asp-action="Details" asp-route-id="@ViewData["product_id"]">Trở lại</a>
+    </form>
+</div>
+
+

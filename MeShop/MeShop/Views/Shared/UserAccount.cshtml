@@ -1,0 +1,24 @@
+﻿<div class="modal right fade sidebarModal" id="sidebarModal" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true"><i class="bx bx-x"></i></span>
+            </button>
+
+            <div class="modal-body">
+                <div class="sidebar-about-content">
+                    <h3>@(User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value)</h3>
+
+                    <div class="about-the-store">
+                        <ul class="sidebar-contact-info">
+                            <li><i class="bx bx-map"></i> <a asp-controller="useraddresses" asp-action="index">Sổ địa chỉ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-new-in-store">
+                    <a asp-controller="useraccount" asp-action="logout" class="shop-now-btn">Đăng xuất</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

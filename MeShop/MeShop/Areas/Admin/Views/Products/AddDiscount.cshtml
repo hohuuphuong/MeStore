@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "CreateDetails";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+    <div class="flex-grow-1">
+        <h4 class="fs-18 fw-semibold m-0">Thêm mã giảm giá</h4>
+    </div>
+
+    <div class="text-end">
+        <ol class="breadcrumb m-0 py-0">
+            <li class="breadcrumb-item"><a asp-area="admin" asp-controller="products" asp-action="index">Sản phẩm</a></li>
+            <li class="breadcrumb-item active">Chi tiết sản phẩm</li>
+            <li class="breadcrumb-item active">Thêm mã giảm giá</li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <form asp-action="AddDiscount" method="post">
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <label for="Discount_Id" class="form-label fw-bold">Mã giảm giá</label>
+                            <select name="Discount_Id" class="form-control" asp-items="ViewBag.Discount_Id"></select>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary">Lưu</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+

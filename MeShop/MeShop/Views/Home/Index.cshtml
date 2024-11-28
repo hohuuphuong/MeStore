@@ -1,0 +1,598 @@
+﻿@model MeShop.Models.ViewModels.ProductVM
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Start Main Banner Area -->
+<div class="home-slides owl-carousel owl-theme">
+    <div class="main-banner banner-bg1">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="container">
+                    <div class="main-banner-content">
+                        <h1>Mua sắm ngay!</h1>
+                        <p>Giảm giá lên đến 50%</p>
+                        <div class="btn-box">
+                            <a asp-action="index" asp-controller="products" class="optional-btn">Mua ngay -></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Main Banner Area -->
+<!-- Start Products Area -->
+<section class="products-area pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <a asp-area="" asp-action="Index1" asp-route-Collection="newest" asp-controller="products"><span class="sub-title">Xem bộ sưu tập</span></a>
+            <h2>Sản phẩm mới nhất</h2>
+        </div>
+
+        <div class="row justify-content-center">
+           @foreach(var item in Model.newest_products)
+           {
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="single-products-box">
+                        <div class="products-image">
+                            <a asp-controller="products" asp-action="details" asp-route-id="@item.Id">
+                                @if (item.existingPathImage.Count() >= 2)
+                                {
+                                    <img src="@Url.Content(item.existingPathImage[0])" class="main-image" alt="image">
+                                    <img src="@Url.Content(item.existingPathImage[1])" class="hover-image" alt="image">
+                                }
+                            </a>
+
+                            <div class="products-button">
+                                <ul>
+                                    <li>
+                                        <div class="quick-view-btn">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="@("#productsQuickView" + item.Id)">
+                                                <i class='bx bx-search-alt'></i>
+                                                <span class="tooltip-label">Xem nhanh</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            @if (item.Discount_Active == true)
+                            {
+                                <div class="sale-tag">Sale!</div>
+                            }
+
+                        </div>
+
+                        <div class="products-content">
+                            <h3><a asp-controller="products" asp-action="details" asp-route-id="@item.Id">@item.Name</a></h3>
+                            <div class="price">
+                                @if (item.Discount_Active == true)
+                                {
+                                    <span class="old-price">@String.Format("{0:N0}", item.Price)VNĐ</span>
+                                    <span class="new-price">@String.Format("{0:N0}", item.Price_AfterDiscount)VNĐ</span>
+                                }
+                                else
+                                {
+                                    <span class="new-price">@String.Format("{0:N0}", item.Price)VNĐ</span>
+                                }
+                            </div>
+                            <div class="star-rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+           }
+        </div>
+    </div>
+</section>
+<!-- End Products Area -->
+<!-- Start Offer Area -->
+<section class="offer-area bg-image1 ptb-100 jarallax" data-jarallax='{"speed": 0.3}'>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-6">
+                <div class="offer-content">
+                    <h2>Mặc hàng ngày</h2>
+                    <p>Đa dạng phong cách</p>
+                    <a class="default-btn">Khám phá ngay</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Offer Area -->
+<!-- Start Products Area -->
+<section class="products-area pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <a asp-area="" asp-action="Index1" asp-route-Collection="popular" asp-controller="products"><span class="sub-title">Xem bộ sưu tập</span></a>
+            <h2>Sản phẩm phổ biến</h2>
+        </div>
+
+        <div class="row justify-content-center">
+            @foreach(var item in Model.popular_products)
+            {
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="single-products-box">
+                        <div class="products-image">
+                            <a asp-controller="products" asp-action="details" asp-route-id="@item.Id">
+                                @if (item.existingPathImage.Count() >= 2)
+                                {
+                                    <img src="@Url.Content(item.existingPathImage[0])" class="main-image" alt="image">
+                                    <img src="@Url.Content(item.existingPathImage[1])" class="hover-image" alt="image">
+                                }  
+                            </a>
+
+                            <div class="products-button">
+                                <ul>
+                                    <li>
+                                        <div class="quick-view-btn">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="@("#productsQuickView" + item.Id)">
+                                                <i class='bx bx-search-alt'></i>
+                                                <span class="tooltip-label">Xem nhanh</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            @if (item.Discount_Active == true)
+                            {
+                                <div class="sale-tag">Sale!</div>
+                            }
+
+                        </div>
+
+                        <div class="products-content">
+                            <h3><a asp-controller="products" asp-action="details" asp-route-id="@item.Id">@item.Name</a></h3>
+                            <div class="price">
+                                @if (item.Discount_Active == true)
+                                {
+                                    <span class="old-price">@String.Format("{0:N0}", item.Price)VNĐ</span>
+                                    <span class="new-price">@String.Format("{0:N0}", item.Price_AfterDiscount)VNĐ</span>
+                                }
+                                else
+                                {
+                                    <span class="new-price">@String.Format("{0:N0}", item.Price)VNĐ</span>
+                                }
+                            </div>
+                            <div class="star-rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            }
+           
+        </div>
+</section>
+<!-- End Products Area -->
+<!-- Start Products Area -->
+<section class="products-area pb-70">
+    <div class="container">
+        <div class="section-title">
+            <a asp-area="" asp-action="Index1" asp-route-Collection="best_seller" asp-controller="products"><span class="sub-title">Xem bộ sưu tập</span></a>
+            <h2>Bán chạy nhất</h2>
+        </div>
+
+        <div class="row justify-content-center">
+            @foreach (var item in Model.bestseller_products)
+            {
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="single-products-box">
+                        <div class="products-image">
+                            <a asp-controller="products" asp-action="details" asp-route-id="@item.Id">
+                                @if (item.existingPathImage.Count() >= 2)
+                                {
+                                    <img src="@Url.Content(item.existingPathImage[0])" class="main-image" alt="image">
+                                    <img src="@Url.Content(item.existingPathImage[1])" class="hover-image" alt="image">
+                                }
+                                
+                            </a>
+
+                            <div class="products-button">
+                                <ul>
+                                    <li>
+                                        <div class="quick-view-btn">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="@("#productsQuickView" + item.Id)">
+                                                <i class='bx bx-search-alt'></i>
+                                                <span class="tooltip-label">Xem nhanh</span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            @if (item.Discount_Active == true)
+                            {
+                                <div class="sale-tag">Sale!</div>
+                            }
+
+                        </div>
+
+                        <div class="products-content">
+                            <h3><a asp-controller="products" asp-action="details" asp-route-id="@item.Id">@item.Name</a></h3>
+                            <div class="price">
+                                @if (item.Discount_Active == true)
+                                {
+                                    <span class="old-price">@String.Format("{0:N0}", item.Price)VNĐ</span>
+                                    <span class="new-price">@String.Format("{0:N0}", item.Price_AfterDiscount)VNĐ</span>
+                                }
+                                else
+                                {
+                                    <span class="new-price">@String.Format("{0:N0}", item.Price)VNĐ</span>
+                                }
+                            </div>
+                            <div class="star-rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- End Products Area -->
+<!-- Start QuickView Modal Area -->
+@foreach(var item in Model.newest_products)
+{
+    <div class="modal fade productsQuickView" id="@("productsQuickView" + item.Id)" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class='bx bx-x'></i></span>
+                </button>
+
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="products-image">
+                            <img src="@Url.Content(item.existingPathImage.FirstOrDefault())" alt="Chưa thêm ảnh">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="products-content">
+                            <h3><a>@item.Name</a></h3>
+
+                            <div class="price">
+                                @if(item.Discount_Active == true)
+                                {
+                                    <span class="old-price">@String.Format("{0:N0}", item.Price)VNĐ</span>
+                                    <span class="new-price">@String.Format("{0:N0}", item.Price_AfterDiscount)VNĐ</span>
+                                }
+                                else
+                                {
+                                    <span class="new-price">@String.Format("{0:N0}", item.Price)VNĐ</span>
+                                }
+                            </div>
+
+                            <div class="products-review">
+                                <div class="rating">
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                </div>
+                            </div>
+
+                            <ul class="products-info">
+                                <li><span>Danh mục sản phẩm:</span> <a>@item.ProductCategory_Name</a></li>
+                                <li><span>Tình trạng:</span> <a class="stock-status">Còn hàng (@item.Product_Sizes.FirstOrDefault()?.Product_Inventory?.Quantity còn lại)</a></li>
+                            </ul>
+                            <div class="products-size-wrapper">
+                                <h4>Size:</h4>
+
+                                <ul>
+                                    @foreach(var product_size in item.Product_Sizes)
+                                    {
+                                        <li class="@((product_size == item.Product_Sizes.First()) ? "active" : "")">
+                                            <a href="javascript:void(0);" class="size-link" data-quantity="@product_size?.Product_Inventory?.Quantity" data-product-size-id="@product_size?.Id">@product_size?.Size?.Name</a>
+                                        </li>
+                                    }
+                            </div>
+
+                            <div class="products-add-to-cart">
+                                <div class="input-counter">
+                                    <span class="minus-btn"><i class='bx bx-minus'></i></span>
+                                    <input type="text" value="1" min="1" max="@item.Product_Sizes.FirstOrDefault()?.Product_Inventory?.Quantity" readonly>
+                                    <span class="plus-btn"><i class='bx bx-plus'></i></span>
+                                </div>
+
+                                <button type="submit" class="default-btn add-to-cart-btn">Thêm vào giỏ hàng</button>
+                            </div>
+
+                            <a asp-controller="products" asp-action="details" asp-route-id="@item.Id" class="view-full-info">Xem chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@foreach (var item in Model.popular_products)
+{
+    <div class="modal fade productsQuickView" id="@("productsQuickView" + item.Id)" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class='bx bx-x'></i></span>
+                </button>
+
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="products-image">
+                            <img src="@Url.Content(item.existingPathImage.FirstOrDefault())" alt="Chưa thêm ảnh">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="products-content">
+                            <h3><a>@item.Name</a></h3>
+
+                            <div class="price">
+                                @if (item.Discount_Active == true)
+                                {
+                                    <span class="old-price">@String.Format("{0:N0}", item.Price)VNĐ</span>
+                                    <span class="new-price">@String.Format("{0:N0}", item.Price_AfterDiscount)VNĐ</span>
+                                }
+                                else
+                                {
+                                    <span class="new-price">@String.Format("{0:N0}", item.Price)VNĐ</span>
+                                }
+                            </div>
+
+                            <div class="products-review">
+                                <div class="rating">
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                </div>
+                            </div>
+
+                            <ul class="products-info">
+                                <li><span>Danh mục sản phẩm:</span> <a>@item.ProductCategory_Name</a></li>
+                                <li><span>Tình trạng:</span> <a class="stock-status">Còn hàng (@item.Product_Sizes.FirstOrDefault()?.Product_Inventory?.Quantity còn lại)</a></li>
+                            </ul>
+                            <div class="products-size-wrapper">
+                                <h4>Size:</h4>
+
+                                <ul>
+                                    @foreach (var product_size in item.Product_Sizes)
+                                    {
+                                        <li class="@((product_size == item.Product_Sizes.First()) ? "active" : "")">
+                                            <a href="javascript:void(0);" class="size-link" data-quantity="@product_size?.Product_Inventory?.Quantity" data-product-size-id="@product_size?.Id">@product_size?.Size?.Name</a>
+                                        </li>
+                                    }
+                            </div>
+
+                            <div class="products-add-to-cart">
+                                <div class="input-counter">
+                                    <span class="minus-btn"><i class='bx bx-minus'></i></span>
+                                    <input type="text" value="1" min="1" max="@item.Product_Sizes.FirstOrDefault()?.Product_Inventory?.Quantity" readonly>
+                                    <span class="plus-btn"><i class='bx bx-plus'></i></span>
+                                </div>
+
+                                <button type="submit" class="default-btn add-to-cart-btn">Thêm vào giỏ hàng</button>
+                            </div>
+
+                            <a asp-controller="products" asp-action="details" asp-route-id="@item.Id" class="view-full-info">Xem chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@foreach (var item in Model.bestseller_products)
+{
+    <div class="modal fade productsQuickView" id="@("productsQuickView" + item.Id)" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class='bx bx-x'></i></span>
+                </button>
+
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="products-image">
+                            <img src="@Url.Content(item.existingPathImage.FirstOrDefault())" alt="Chưa thêm ảnh">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="products-content">
+                            <h3><a>@item.Name</a></h3>
+
+                            <div class="price">
+                                @if (item.Discount_Active == true)
+                                {
+                                    <span class="old-price">@String.Format("{0:N0}", item.Price)VNĐ</span>
+                                    <span class="new-price">@String.Format("{0:N0}", item.Price_AfterDiscount)VNĐ</span>
+                                }
+                                else
+                                {
+                                    <span class="new-price">@String.Format("{0:N0}", item.Price)VNĐ</span>
+                                }
+                            </div>
+
+                            <div class="products-review">
+                                <div class="rating">
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                </div>
+                            </div>
+
+                            <ul class="products-info">
+                                <li><span>Danh mục sản phẩm:</span> <a>@item.ProductCategory_Name</a></li>
+                                <li><span>Tình trạng:</span> <a class="stock-status">Còn hàng (@item.Product_Sizes.FirstOrDefault()?.Product_Inventory?.Quantity còn lại)</a></li>
+                            </ul>
+                            <div class="products-size-wrapper">
+                                <h4>Size:</h4>
+
+                                <ul>
+                                    @foreach (var product_size in item.Product_Sizes)
+                                    {
+                                        <li class="@((product_size == item.Product_Sizes.First()) ? "active" : "")">
+                                            <a href="javascript:void(0);" class="size-link" data-quantity="@product_size?.Product_Inventory?.Quantity" data-product-size-id="@product_size?.Id">@product_size?.Size?.Name</a>
+                                        </li>
+                                    }
+                            </div>
+
+                            <div class="products-add-to-cart">
+                                <div class="input-counter">
+                                    <span class="minus-btn"><i class='bx bx-minus'></i></span>
+                                    <input type="text" value="1" min="1" max="@item.Product_Sizes.FirstOrDefault()?.Product_Inventory?.Quantity" readonly>
+                                    <span class="plus-btn"><i class='bx bx-plus'></i></span>
+                                </div>
+
+                                <button type="submit" class="default-btn add-to-cart-btn">Thêm vào giỏ hàng</button>
+                            </div>
+
+                            <a asp-controller="products" asp-action="details" asp-route-id="@item.Id" class="view-full-info">Xem chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<!-- End QuickView Modal Area -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".size-link").click(function (e) {
+            e.preventDefault();
+
+            var parentDivWithId = $(this).closest("div[id]");
+            var divId = parentDivWithId.attr("id");
+
+            $("#" + divId + " li").removeClass("active");
+
+            $(this).closest("li").addClass("active");
+
+            var quantity = $(this).data("quantity");
+
+            $("#" + divId + " .stock-status").text("Còn hàng (" + quantity + " còn lại)");
+        }); 
+    }); 
+
+    // Input Plus & Minus Number JS
+    $('.input-counter').each(function () {
+       
+        var spinner = jQuery(this),
+            input = spinner.find('input[type="text"]'),
+            btnUp = spinner.find('.plus-btn'),
+            btnDown = spinner.find('.minus-btn'),
+            min = input.attr('min'),
+            max = input.attr('max');
+
+        var parentDivWithId = $(this).closest("div[id]");
+        var divId = parentDivWithId.attr("id");
+
+        $("#" + divId + " .size-link").click(function (e) {
+            max = $(this).data("quantity");
+            spinner.find("input").val(min);
+        });  
+
+        btnUp.on('click', function () {
+            var oldValue = parseInt(input.val());
+            if (oldValue >= max) {
+                var newVal = oldValue;
+            } else {
+                var newVal = oldValue + 1;
+            }
+            spinner.find("input").val(newVal);
+            
+        });
+        btnDown.on('click', function () {
+            var oldValue = parseInt(input.val());
+            if (oldValue <= min) {
+                var newVal = oldValue;
+            } else {
+                var newVal = oldValue - 1;
+            }
+            spinner.find("input").val(newVal);
+           
+        });
+    });
+
+    $(document).ready(function () {
+        $('.add-to-cart-btn').on('click', function (e) {
+            e.preventDefault();
+
+            var parentDivWithId = $(this).closest("div[id]");
+            var divId = parentDivWithId.attr("id");
+
+            var activeLi = $('#' + divId + ' li.active');
+
+            var activeLink = activeLi.find('a.size-link');
+
+            var productSizeId = activeLink.data('product-size-id');
+
+            var quantity = $('#' + divId + ' .input-counter input').val();
+
+            //AJAX tới action AddToCart
+            $.ajax({
+                url: '/Carts/AddToCart',
+                type: 'POST',
+                data: {
+                    product_size_id: productSizeId,
+                    quantity: quantity
+                },
+                success: function (response) {
+                    if (response.success) {
+                        
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: response.message,
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                        $('#cart-item-count').text(response.cartItemCount);
+
+                    } else {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "error",
+                            title: "Lỗi",
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                    }
+                },
+                error: function () {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "info",
+                        title: "Lỗi",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                }
+            });
+        });
+    });
+</script>

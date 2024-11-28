@@ -1,0 +1,75 @@
+﻿@model MeShop.Models.Product_Category
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+    <div class="flex-grow-1">
+        <h4 class="fs-18 fw-semibold m-0">Chi tiết danh mục</h4>
+    </div>
+    <div class="text-end">
+        <ol class="breadcrumb m-0 py-0">
+            <li class="breadcrumb-item"><a asp-area="admin" asp-controller="product_category" asp-action="index">Danh mục</a></li>
+            <li class="breadcrumb-item active">Chi tiết danh mục</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div id="fixed-header-datatable_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div id="fixed-header-datatable_filter" class="dataTables_filter">
+                                <div class="d-flex align-items-center">
+                                    <h3 class="mb-0">@Model.Name</h3>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="fixed-header-datatable" class="table table-striped dt-responsive nowrap table-striped w-100 dataTable no-footer dtr-inline" aria-describedby="fixed-header-datatable_info" style="width: 1264px;">
+                                <thead>
+                                    <tr>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 50px;">Id sản phẩm</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 150px;">Tên sản phẩm</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 150px;">Giá sản phẩm</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 100px;">Trạng thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var product in Model.Products)
+                                    {
+                                        <tr class="even">
+                                            <td><a asp-controller="products" asp-action="details" asp-route-id="@product.Id">@product.Id</a></td>
+                                            <td>@product.Name</td>
+                                            <td>@product.Price</td>
+                                            <td>
+                                                @if (product.Active)
+                                                {
+                                                    <i data-feather="eye" style="width: 5%"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i data-feather="eye-off" style="width: 5%"></i>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

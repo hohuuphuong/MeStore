@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>Tài khoản</h2>
+        </div>
+    </div>
+</div>
+<section class="signup-area ptb-100">
+    <div class="container">
+        <div class="signup-content">
+            <h2>Đăng ký tài khoản</h2>
+
+            <form asp-action="Register" class="signup-form">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label>Họ tên</label>
+                    <input type="text" class="form-control" placeholder="Tên của bạn" name="Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <input type="tel" class="form-control" placeholder="SĐT của bạn" name="telephone" required pattern="0[0-9]{9}" title="Số điện thoại không hợp lệ">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" placeholder="Email của bạn" name="Email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" placeholder="Enter your password" name="Password" required>
+                </div>
+
+                <button type="submit" class="default-btn">Đăng ký</button>
+
+                <a asp-action="login" class="return-store">Hoặc đăng nhập</a>
+            </form>
+        </div>
+    </div>
+</section>
+

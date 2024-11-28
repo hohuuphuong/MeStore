@@ -1,0 +1,121 @@
+﻿@model User_Address
+@{
+    ViewData["Title"] = "CreateAddress";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="checkout-area ptb-100">
+    <div class="container">
+        <div class="user-actions">
+            <i class="bx bx-log-in"></i>
+            <a asp-action="index"><span>Địa chỉ của tôi</span></a>
+        </div>
+        <form asp-action="CreateAddress" method="post">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-12">
+                    <div class="billing-details">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <input asp-for="Address_Detail" placeholder="Địa chỉ" type="text" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <div class="select-box">
+                                        <select asp-for="Address_City" class="form-control" style="display: none;" id="city" required>
+                                            <option value="" selected disabled>Chọn Tỉnh/Thành</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <div class="select-box">     
+                                        <select asp-for="Address_District" class="form-control" id="district" required>
+                                            <option value="" selected disabled>Chọn Quận/Huyện</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <div class="select-box">
+                                        <select asp-for="Address_Ward" class="form-control" id="ward" required>
+                                            <option value="" selected disabled>Chọn Phường/Xã</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-check">
+                                    <input asp-for="IsDefault" type="checkbox" class="form-check-input" id="a">
+                                    <label class="form-check-label" for="a">Đặt làm mặc định</label>
+                                </div>
+                            </div>
+                            <button class="default-btn" type="submit">Thêm</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+@section Scripts
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            var citis = document.getElementById("city");
+            var districts = document.getElementById("district");
+            var wards = document.getElementById("ward");
+
+            try {
+                const response = await fetch("https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json");
+                const data = await response.json();
+                renderCity(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+
+            function renderCity(data) {
+                updateSelect(citis, data.map(x => ({ name: x.Name, id: x.Id })), "Chọn Tỉnh/Thành");
+
+                citis.onchange = function () {
+                    updateSelect(districts, [], "Chọn Quận/Huyện");
+                    updateSelect(wards, [], "Chọn Phường/Xã");
+                    districts.length = 1;
+                    wards.length = 1;
+                    if (this.value != "") {
+                        const result = data.filter(n => n.Name === this.value);
+                        updateSelect(districts, result[0].Districts.map(k => ({ name: k.Name, id: k.Id })), "Chọn Quận/Huyện");
+                    }
+                };
+
+                districts.onchange = function () {
+                    updateSelect(wards, [], "Chọn Phường/Xã");
+                    wards.length = 1;
+                    const dataCity = data.filter(n => n.Name === citis.value);
+                    if (this.value != "") {
+                        const dataWards = dataCity[0].Districts.filter(n => n.Name === this.value)[0].Wards;
+                        updateSelect(wards, dataWards.map(w => ({ name: w.Name, id: w.Id })), "Chọn Phường/Xã");
+                    }
+                };
+            }
+
+            function updateSelect(selectElement, options, placeholderText) {
+                selectElement.innerHTML = `<option value="" selected>${placeholderText}</option>`;
+
+                for (const option of options) {
+                    selectElement.options[selectElement.options.length] = new Option(option.name, option.name);
+                }
+                $(selectElement).niceSelect('update');
+            }
+
+            $('select').niceSelect();
+        });
+    </script>
+}

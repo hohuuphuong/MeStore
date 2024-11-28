@@ -1,0 +1,127 @@
+﻿@model MeShop.Models.Product
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+    <div class="flex-grow-1">
+        <h4 class="fs-18 fw-semibold m-0">Chi tiết sản phẩm</h4>
+    </div>
+    <div class="text-end">
+        <ol class="breadcrumb m-0 py-0">
+            <li class="breadcrumb-item"><a asp-area="admin" asp-controller="products" asp-action="index">Sản phẩm</a></li>
+            <li class="breadcrumb-item active">Chi tiết sản phẩm</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div id="fixed-header-datatable_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div id="fixed-header-datatable_filter" class="dataTables_filter">
+                                <div class="d-flex align-items-center">
+                                        <h3 class="mb-0">@Model.Name [@Model.Product_Category?.Name]</h3>
+                                    </div>
+                                <a asp-area="admin" asp-controller="products" asp-action="CreateDetails" asp-route-product_id="@Model.Id"><button type="button" class="btn btn-primary"><i class="mdi mdi-plus"></i> Chi tiết sản phẩm</button></a>
+                            </div>
+                            <br />
+                            <div id="fixed-header-datatable_filter" class="dataTables_filter">
+                                <a asp-area="admin" asp-controller="products" asp-action="AddDiscount" asp-route-id="@Model.Id"><button type="button" class="btn btn-primary"><i class="mdi mdi-plus"></i> Mã giảm giá</button></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="fixed-header-datatable" class="table table-striped dt-responsive nowrap table-striped w-100 dataTable no-footer dtr-inline" aria-describedby="fixed-header-datatable_info" style="width: 1264px;">
+                                <thead>
+                                    <tr>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 150px;">Size</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 150px;">Tồn kho</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 150px;">Mã giảm giá</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 150px;">Giảm giá(%)</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 50px;">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var sizeItem in Model.Product_Sizes)
+                                    {
+                                        <tr class="even">
+                                            <td>@sizeItem.Size?.Name</td>
+                                            <td>@sizeItem.Product_Inventory?.Quantity</td>
+                                            <td>@Model.Discount?.Name</td>
+                                            <td>@String.Format("{0:N1}%", @Model.Discount?.Discount_Percent)</td>
+                                            <td>
+                                                @*  asp-route-id="@Model.Product_Sizes.FirstOrDefault(ps => ps.Product_Id == sizeItem.Product_Id)" *@
+                                                <a asp-action="DeleteDetails" asp-route-product_id="@sizeItem.Product_Id" asp-route-size_id="@sizeItem.Size_Id" style="color: inherit;">
+                                                    <i class="mdi mdi-trash-can-outline"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <h5>Ảnh sản phẩm</h5>
+                        </div>  
+                        <div class="col-xl-6">
+                            <div class="d-flex flex-wrap gap-2">
+                                <div id="carouselExampleCaptions" class="carousel slide">
+                                    <div class="carousel-indicators">
+                                        @for(int i=0; i<Model.Images.Count(); i++)
+                                        {
+                                            if (i == Model.Images.Count() - 1)
+                                            {
+                                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="@i" aria-label="Slide @i" class="active" aria-current="true"></button>
+                                            }
+                                            else
+                                            {
+                                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="@i" class="" aria-label="Slide @i"></button>
+                                            }
+                                        }
+                                    </div>
+                                    <div class="carousel-inner">
+                                        @foreach (var item in Model.Images)
+                                        {
+                                            if(item == Model.Images.Last())
+                                            {
+                                                <div class="carousel-item active">
+                                                    <img src="@Url.Content(item.Path)" class="d-block" style="width: 750px; height: 489px;" alt="">
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="carousel-item ">
+                                                    <img src="@Url.Content(item.Path)" class="d-block" style="width: 750px; height: 489px;" alt="">
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

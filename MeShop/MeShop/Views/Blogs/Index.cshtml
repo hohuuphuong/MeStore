@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MeShop.Models.ViewModels.BlogVM>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>Tin tức</h2>
+        </div>
+    </div>
+</div>
+
+<section class="blog-area ptb-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            @foreach(var item in Model)
+            {
+                <div class="col-lg-6 col-md-6">
+                    <div class="single-blog-post">
+                        <div class="post-image">
+                            <a asp-action="details" asp-route-id="@item.Id">
+                                <img src="@Url.Content(item.ImagePath)" alt="image">
+                            </a>
+                            <div class="date">
+                                <span>@item.Created_At?.ToString("dd/MM/yyyy")</span>
+                            </div>
+                        </div>
+
+                        <div class="post-content">
+                            <h3><a asp-action="details" asp-route-id="@item.Id">@item.Title</a></h3>
+                            <a asp-action="details" asp-route-id="@item.Id" class="details-btn">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

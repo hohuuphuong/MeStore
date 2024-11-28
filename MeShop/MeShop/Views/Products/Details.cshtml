@@ -1,0 +1,281 @@
+﻿@model MeShop.Models.ViewModels.ProductVM
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>@Model.Name</h2>
+        </div>
+    </div>
+</div>
+<section class="product-details-area pt-100 pb-70">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-12">
+                <div class="products-details-image">
+                    <div class="single-products-details-image">
+                        @foreach(var item in Model.existingPathImage)
+                        {
+                            <img src="@Url.Content(item)" class="main-image" alt="image">
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7 col-md-12">
+                <div class="products-details-desc" style="height: 942px; position: relative;">
+                        <h3>@Model.Name</h3>
+
+                        <div class="price">
+                            @if (Model.Discount_Active == true)
+                            {
+                                <span class="old-price">@String.Format("{0:N0}", Model.Price)VNĐ</span>
+                                <span class="new-price">@String.Format("{0:N0}", Model.Price_AfterDiscount)VNĐ</span>
+                            }
+                            else
+                            {
+                                <span class="new-price">@String.Format("{0:N0}", Model.Price)VNĐ</span>
+                            }
+                        </div>
+
+                        <div class="products-review">
+                            <div class="rating">
+                                <i class="bx bx-star"></i>
+                                <i class="bx bx-star"></i>
+                                <i class="bx bx-star"></i>
+                                <i class="bx bx-star"></i>
+                                <i class="bx bx-star"></i>
+                            </div>
+                        </div>
+
+                        <ul class="products-info">
+                            <li><span>Danh mục sản phẩm:</span> <a>@Model.ProductCategory_Name</a></li>
+                            <li><span>Tình trạng:</span> <a class="stock-status">Còn hàng (@Model.Product_Sizes.FirstOrDefault()?.Product_Inventory?.Quantity còn lại)</a></li>
+                        </ul>
+
+                        
+
+                        <div class="products-size-wrapper">
+                            <span>Size:</span>
+
+                            <ul>
+   
+                                @foreach (var product_size in Model.Product_Sizes)
+                                {
+                                    <li class="@((product_size == Model.Product_Sizes.First()) ? "active" : "")">
+                                    <a href="javascript:void(0);" class="size-link" data-quantity="@product_size?.Product_Inventory?.Quantity" data-product-size-id="@product_size?.Id">@product_size?.Size?.Name</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                        <div class="products-info-btn">
+                            <a href="" data-bs-toggle="modal" data-bs-target="#sizeGuideModal"><i class="bx bx-crop"></i> Bảng size</a>
+                        </div>
+
+                        <div class="products-add-to-cart">
+                            <div class="input-counter">
+                                <span class="minus-btn"><i class='bx bx-minus'></i></span>
+                                <input type="text" value="1" min="1" max="@Model.Product_Sizes.FirstOrDefault()?.Product_Inventory?.Quantity" readonly>
+                                <span class="plus-btn"><i class='bx bx-plus'></i></span>
+                            </div>
+
+                        <button type="submit" class="default-btn add-to-cart-btn"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
+                        </div>
+                        <div class="products-details-accordion">
+                            <ul class="accordion">
+                                <li class="accordion-item">
+                                    <a class="accordion-title active" href="javascript:void(0)">
+                                        <i class="bx bx-chevron-down"></i>
+                                        Mô tả
+                                    </a>
+
+                                    <div class="accordion-content show">
+                                        <p>@Model.Desc</p>
+
+                                        <ul>
+                                            <li>100% Polyester</li>
+                                            <li>100% Polyester, Lining: 100% Polyester</li>
+                                            <li>75% Polyester, 20% Viscose, 5% Elastane</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="related-products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sản phẩm liên quan</h2>
+            </div>
+
+            <div class="products-slides owl-carousel owl-theme">
+                @{
+                    var p = ViewData["related_products"] as List<MeShop.Models.ViewModels.ProductVM>;
+                }
+                @foreach(var item in p)
+                {
+                    <div class="single-products-box">
+                        <div class="products-image">
+                            <a asp-action="details" asp-route-id="@item.Id">
+                                @if(item.existingNameImage.Count > 1)
+                                {
+                                    <img src="@Url.Content(item.existingNameImage[0])" class="main-image" alt="image">
+                                    <img src="@Url.Content(item.existingNameImage[1])" class="hover-image" alt="image">
+                                }
+                                else
+                                {
+                                    <img src="~/assets/img/products/img-hover1.jpg" class="main-image" alt="image">
+                                    <img src="~/assets/img/products/img-hover1.jpg" class="hover-image" alt="image">
+                                }
+                            </a>
+
+                        </div>
+
+                        <div class="products-content">
+                            <h3><a asp-action="details" asp-route-id="@item.Id">@item.Name</a></h3>
+                            <div class="price">
+                                @if(item.Discount_Active == null || item.Discount_Percent == null)
+                                {
+                                    <span class="new-price">@String.Format("{0:N0}", item.Price)VNĐ</span>
+                                }
+                                else
+                                {
+                                    <span class="old-price">@String.Format("{0:N0}", item.Price)VNĐ</span>
+                                    <span class="new-price">@String.Format("{0:N0}", item.Price_AfterDiscount)VNĐ</span>
+                                }
+                               
+                            </div>
+                            <div class="star-rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                        </div>
+                    </div>
+                } 
+              
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".size-link").click(function (e) {
+            e.preventDefault();
+
+            $("li").removeClass("active");
+
+            $(this).closest("li").addClass("active");
+
+            var quantity = $(this).data("quantity");
+
+            $(".stock-status").text("Còn hàng (" + quantity + " còn lại)");
+
+            $(".input-counter input").attr("max", quantity);
+        });
+    });
+
+    // Input Plus & Minus Number JS
+    $('.input-counter').each(function () {
+
+        var spinner = jQuery(this),
+            input = spinner.find('input[type="text"]'),
+            btnUp = spinner.find('.plus-btn'),
+            btnDown = spinner.find('.minus-btn'),
+            min = input.attr('min'),
+            max = input.attr('max');
+
+        $(".size-link").click(function (e) {
+            max = $(this).data("quantity");
+            spinner.find("input").val(min);
+        });
+
+        btnUp.on('click', function () {
+            var oldValue = parseInt(input.val());
+            if (oldValue >= max) {
+                var newVal = oldValue;
+            } else {
+                var newVal = oldValue + 1;
+            }
+            spinner.find("input").val(newVal);
+
+        });
+        btnDown.on('click', function () {
+            var oldValue = parseInt(input.val());
+            if (oldValue <= min) {
+                var newVal = oldValue;
+            } else {
+                var newVal = oldValue - 1;
+            }
+            spinner.find("input").val(newVal);
+
+        });
+    });
+    $(document).ready(function () {
+        $('.add-to-cart-btn').on('click', function (e) {
+            e.preventDefault();
+
+            var activeLi = $('li.active');
+
+            var activeLink = activeLi.find('a.size-link');
+
+            var productSizeId = activeLink.data('product-size-id');
+
+            var quantity = $('.input-counter input').val();
+
+            //AJAX tới action AddToCart
+            $.ajax({
+                url: '/Carts/AddToCart',
+                type: 'POST',
+                data: {
+                    product_size_id: productSizeId,
+                    quantity: quantity
+                },
+                success: function (response) {
+                    if (response.success) {
+
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: response.message,
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                        $('#cart-item-count').text(response.cartItemCount);
+
+                    } else {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "error",
+                            title: "Lỗi",
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                    }
+                },
+                error: function () {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "info",
+                        title: "Lỗi",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                }
+            });
+        });
+    });
+</script>
+

@@ -1,0 +1,472 @@
+﻿@model IEnumerable<MeShop.Models.ViewModels.ProductVM>
+@{
+    var Categories = ViewData["Categories"] as List<string>;
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>@ViewData["Category_Name"]</h2>
+        </div>
+    </div>
+</div>
+
+<section class="products-area products-collections-area pt-100 pb-70">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-2 col-md-12">
+                <div class="woocommerce-widget-area">
+                    <div class="woocommerce-widget collections-list-widget">
+                        <h3 class="woocommerce-widget-title">Nhóm sản phẩm</h3>
+                        <ul class="collections-list-row">
+                            @foreach(var item in Categories)
+                            {
+                                if (ViewData["Category_Name"].ToString() == item)
+                                {
+                                    <li class="active"><a asp-controller="Products" asp-action="Index" class="active">@item</a></li>
+                                }
+                                else
+                                {
+                                    <li><a asp-controller="Products" asp-action="Index" asp-route-Category_Name="@item">@item</a></li>
+                                }
+                                
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-10 col-md-12">
+                <div class="products-filter-options">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-4 col-md-4">
+                        </div>
+
+                        <div class="col-lg-4 col-md-4"> </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <form asp-action="index">
+                                <div class="input-group rounded">
+                                    <input name="term" value="@TempData["term"]" type="search" class="form-control rounded" placeholder="Tìm kiếm sản phẩm..." aria-label="Search" aria-describedby="search-addon" />
+                                    <button type="submit" class="input-group-text border-0" id="search-addon">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="products-filter-options">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-4 col-md-4">
+                            <p>@TempData["totalRecords"] sản phẩm</p>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4"> </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <div class="products-ordering-list">
+                                <div class="nice-select" tabindex="0">
+                                    @if (TempData["order_by"]?.ToString() == "a")
+                                    {
+                                        <span class="current">Bán chạy</span>
+                                        <ul class="list">
+
+                                            <li data-value="a" class="option selected focus">Bán chạy</li>
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="b" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option  focus">Phổ biến</li></a>
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="c" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option  focus">Mới nhất</li></a>
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="d" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option focus">Giá thấp đến cao</li></a>
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="e" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option focus">Giá cao đến thấp</li></a>
+                                        </ul>
+                                    }
+                                    else if (TempData["order_by"]?.ToString() == "b")
+                                    {
+                                        <span class="current">Phổ biến</span>
+                                        <ul class="list">
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="a" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option focus">Bán chạy</li></a>
+                                            <li data-value="a" class="option selected focus">Phổ biến</li>
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="c" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option  focus">Mới nhất</li></a>
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="d" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option focus">Giá thấp đến cao</li></a>
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="e" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option focus">Giá cao đến thấp</li></a>
+                                        </ul>
+                                    }
+                                    else if (TempData["order_by"]?.ToString() == "c")
+                                    {
+                                        <span class="current">Mới nhất</span>
+                                        <ul class="list">
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="a" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option focus">Bán chạy</li></a>
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="b" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option  focus">Phổ biến</li></a>
+
+                                            <li data-value="a" class="option selected focus">Mới nhất</li>
+
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="d" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option focus">Giá thấp đến cao</li></a>
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="e" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option focus">Giá cao đến thấp</li></a>
+                                        </ul>
+                                    }
+                                    else if (TempData["order_by"]?.ToString() == "d")
+                                    {
+                                        <span class="current">Giá thấp đến cao</span>
+                                        <ul class="list">
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="a" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option focus">Bán chạy</li></a>
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="b" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option  focus">Phổ biến</li></a>
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="c" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option  focus">Mới nhất</li></a>
+
+                                            <li data-value="a" class="option selected focus">Giá thấp đến cao</li>
+
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="e" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option focus">Giá cao đến thấp</li></a>
+                                        </ul>
+                                    }
+                                    else if (TempData["order_by"]?.ToString() == "e")
+                                    {
+                                        <span class="current">Giá cao đến thấp</span>
+                                        <ul class="list">
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="a" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option focus">Bán chạy</li></a>
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="b" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option  focus">Phổ biến</li></a>
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="c" asp-route-term="@TempData["term"]">
+                                            <li class="option  focus">Mới nhất</li></a>
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="d" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option focus">Giá thấp đến cao</li>
+                                            </a>
+                                            <li data-value="a" class="option selected focus">Giá cao đến thấp</li>
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        <span class="current">Sắp xếp</span>
+                                        <ul class="list">
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="a" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option focus">Bán chạy</li></a>
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="b" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option  focus">Phổ biến</li></a>
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="c" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option selected focus">Mới nhất</li></a>
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="d" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option focus">Giá thấp đến cao</li></a>
+                                            <a asp-action="index" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="e" asp-route-term="@TempData["term"]">
+                                            <li data-value="a" class="option focus">Giá cao đến thấp</li></a>
+                                        </ul>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="products-collections-filter" class="row products-col-four">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-4 col-md-6 col-sm-6 products-col-item">
+                            <div class="single-products-box">
+                                <div class="products-image">
+                                    <a asp-action="details" asp-route-id="@item.Id">
+                                        @if (item.existingPathImage.Count() >= 2)
+                                        {
+                                            <img src="@Url.Content(item.existingPathImage[0])" class="main-image" alt="image">
+                                            <img src="@Url.Content(item.existingPathImage[1])" class="hover-image" alt="image">
+                                        }
+                                        else
+                                        {
+                                            <img src="~/assets/img/products/img8.jpg" class="main-image" alt="image">
+                                            <img src="~/assets/img/products/img-hover8.jpg" class="hover-image" alt="image">
+                                        }
+
+                                    </a>
+
+                                    <div class="products-button">
+                                        <ul>
+
+                                            <li>
+                                                <div class="quick-view-btn">
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="@("#productsQuickView" + item.Id)">
+                                                        <i class='bx bx-search-alt'></i>
+                                                        <span class="tooltip-label">Xem nhanh</span>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    @if (item.Discount_Active == true)
+                                    {
+                                        <div class="sale-tag">Sale!</div>
+                                    }
+                                </div>
+                                <div class="products-content">
+                                    <h3><a asp-action="details" asp-route-id="@item.Id">@item.Name</a></h3>
+                                    <div class="price">
+                                        @if (item.Discount_Active == true)
+                                        {
+                                            <span class="old-price">@String.Format("{0:N0}", item.Price)VNĐ</span>
+                                            <span class="new-price">@String.Format("{0:N0}", item.Price_AfterDiscount)VNĐ</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="new-price">@String.Format("{0:N0}", item.Price)VNĐ</span>
+                                        }
+                                    </div>
+                                    <div class="star-rating">
+                                        <i class='bx bxs-star'></i>
+                                        <i class='bx bxs-star'></i>
+                                        <i class='bx bxs-star'></i>
+                                        <i class='bx bxs-star'></i>
+                                        <i class='bx bxs-star'></i>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <div class="pagination-area text-center">
+                    @if (TempData["currentPage"].ToString() == "1")
+                    {
+                        <a class="prev page-numbers"><i class="bx bx-chevron-left"></i></a>
+
+                    }
+                    else
+                    {
+                        <a asp-route-term="@TempData["term"]" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="@TempData["order_by"]" asp-route-currentPage="@(Convert.ToInt32(TempData["currentPage"])-1)" class="prev page-numbers"><i class="bx bx-chevron-left"></i></a>
+                    }
+                    @for (int i = 1; i <= Convert.ToInt32(TempData["totalPages"]); i++)
+                    {
+                        if (i == Convert.ToInt32(TempData["currentPage"]))
+                        {
+                            <a class="page-numbers current">@i</a>
+                        }
+                        else
+                        {
+                            <a asp-route-term="@TempData["term"]" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="@TempData["ordeorder_byrBy"]" asp-route-currentPage="@i" class="page-numbers">@i</a>
+                        }
+                    }
+                    @if (Convert.ToInt32(TempData["currentPage"]) < Convert.ToInt32(TempData["totalPages"]))
+                    {
+                        <a asp-route-term="@TempData["term"]" asp-route-Category_Name="@ViewData["Category_Name"]" asp-route-order_by="@TempData["order_by"]" asp-route-currentPage="@(Convert.ToInt32(TempData["currentPage"])+1)" class="next page-numbers"><i class="bx bx-chevron-right"></i></a>
+                    }
+                    else
+                    {
+                        <a class="next page-numbers"><i class="bx bx-chevron-right"></i></a>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@foreach (var item in Model)
+{
+    <div class="modal fade productsQuickView" id="@("productsQuickView" + item.Id)" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class='bx bx-x'></i></span>
+                </button>
+
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="products-image">
+                            <img src="@Url.Content(item.existingPathImage.FirstOrDefault())" alt="Chưa thêm ảnh">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="products-content">
+                            <h3><a>@item.Name</a></h3>
+
+                            <div class="price">
+                                @if (item.Discount_Active == true)
+                                {
+                                    <span class="old-price">@String.Format("{0:N0}", item.Price)VNĐ</span>
+                                    <span class="new-price">@String.Format("{0:N0}", item.Price_AfterDiscount)VNĐ</span>
+                                }
+                                else
+                                {
+                                    <span class="new-price">@String.Format("{0:N0}", item.Price)VNĐ</span>
+                                }
+                            </div>
+
+                            <div class="products-review">
+                                <div class="rating">
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                </div>
+                            </div>
+
+                            <ul class="products-info">
+                                <li><span>Danh mục sản phẩm:</span> <a>@item.ProductCategory_Name</a></li>
+                                <li><span>Tình trạng:</span> <a class="stock-status">Còn hàng (@item.Product_Sizes.FirstOrDefault()?.Product_Inventory?.Quantity còn lại)</a></li>
+                            </ul>
+                            <div class="products-size-wrapper">
+                                <h4>Size:</h4>
+
+                                <ul>
+                                    @foreach (var product_size in item.Product_Sizes)
+                                    {
+                                        <li class="@((product_size == item.Product_Sizes.First()) ? "active" : "")">
+                                            <a href="javascript:void(0);" class="size-link" data-quantity="@product_size?.Product_Inventory?.Quantity" data-product-size-id="@product_size?.Id">@product_size?.Size?.Name</a>
+                                        </li>
+                                    }
+                            </div>
+
+                            <div class="products-add-to-cart">
+                                <div class="input-counter">
+                                    <span class="minus-btn"><i class='bx bx-minus'></i></span>
+                                    <input type="text" value="1" min="1" max="@item.Product_Sizes.FirstOrDefault()?.Product_Inventory?.Quantity" readonly>
+                                    <span class="plus-btn"><i class='bx bx-plus'></i></span>
+                                </div>
+
+                                <button type="submit" class="default-btn add-to-cart-btn">Thêm vào giỏ hàng</button>
+                            </div>
+
+                            <a asp-controller="products" asp-action="details" asp-route-id="@item.Id" class="view-full-info">Xem chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        $(".size-link").click(function (e) {
+            e.preventDefault();
+
+            var parentDivWithId = $(this).closest("div[id]");
+            var divId = parentDivWithId.attr("id");
+
+            $("#" + divId + " li").removeClass("active");
+
+            $(this).closest("li").addClass("active");
+
+            var quantity = $(this).data("quantity");
+
+            $("#" + divId + " .stock-status").text("Còn hàng (" + quantity + " còn lại)");
+        });
+    });
+
+    // Input Plus & Minus Number JS
+    $('.input-counter').each(function () {
+
+        var spinner = jQuery(this),
+            input = spinner.find('input[type="text"]'),
+            btnUp = spinner.find('.plus-btn'),
+            btnDown = spinner.find('.minus-btn'),
+            min = input.attr('min'),
+            max = input.attr('max');
+
+        var parentDivWithId = $(this).closest("div[id]");
+        var divId = parentDivWithId.attr("id");
+
+        $("#" + divId + " .size-link").click(function (e) {
+            max = $(this).data("quantity");
+            spinner.find("input").val(min);
+        });
+
+        btnUp.on('click', function () {
+            var oldValue = parseInt(input.val());
+            if (oldValue >= max) {
+                var newVal = oldValue;
+            } else {
+                var newVal = oldValue + 1;
+            }
+            spinner.find("input").val(newVal);
+
+        });
+        btnDown.on('click', function () {
+            var oldValue = parseInt(input.val());
+            if (oldValue <= min) {
+                var newVal = oldValue;
+            } else {
+                var newVal = oldValue - 1;
+            }
+            spinner.find("input").val(newVal);
+
+        });
+    });
+
+    $(document).ready(function () {
+        $('.add-to-cart-btn').on('click', function (e) {
+            e.preventDefault();
+
+            var parentDivWithId = $(this).closest("div[id]");
+            var divId = parentDivWithId.attr("id");
+
+            var activeLi = $('#' + divId + ' li.active');
+
+            var activeLink = activeLi.find('a.size-link');
+
+            var productSizeId = activeLink.data('product-size-id');
+
+            var quantity = $('#' + divId + ' .input-counter input').val();
+
+            //AJAX tới action AddToCart
+            $.ajax({
+                url: '/Carts/AddToCart',
+                type: 'POST',
+                data: {
+                    product_size_id: productSizeId,
+                    quantity: quantity
+                },
+                success: function (response) {
+                    if (response.success) {
+
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: response.message,
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                        $('#cart-item-count').text(response.cartItemCount);
+
+                    } else {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "error",
+                            title: "Lỗi",
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                    }
+                },
+                error: function () {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "info",
+                        title: "Lỗi",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                }
+            });
+        });
+    });
+</script>
+

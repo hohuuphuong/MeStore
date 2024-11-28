@@ -1,0 +1,132 @@
+﻿@model MeShop.Models.ViewModels.ProductVM
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+    <div class="flex-grow-1">
+        <h4 class="fs-18 fw-semibold m-0">Sửa sản phẩm</h4>
+    </div>
+
+    <div class="text-end">
+        <ol class="breadcrumb m-0 py-0">
+            <li class="breadcrumb-item"><a asp-area="admin" asp-controller="products" asp-action="index">Sản phẩm</a></li>
+            <li class="breadcrumb-item active">Sửa sản phẩm</li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="mb-3 w-50">
+                    <label for="name" class="form-label fw-bold">Tên sản phẩm</label>
+                    <input asp-for="Name" type="text" class="form-control" id="name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <label for="price" class="form-label fw-bold">Giá sản phẩm</label>
+                            <input asp-for="Price" type="number" class="form-control" id="price">
+                            <span class="input-group-text">VND</span>
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <div class="col-lg-3">
+                            <label asp-for="ProductCategory_Id" class="form-label fw-bold">Danh mục</label>
+                            <select asp-for="ProductCategory_Id" class="form-control" asp-items="ViewBag.Category_Id"></select>
+                            <span asp-validation-for="ProductCategory_Id" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3 w-50">
+                    <label for="textarea" class="form-label fw-bold">Mô tả</label>
+                    <textarea asp-for="Desc" class="form-control" id="textarea" rows="5" spellcheck="false"></textarea>
+                </div>
+
+                <div class="mb-3 w-25">
+                    <div class="form-check form-switch mb-2">
+                        @if (Model.Active)
+                        {
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked="checked" asp-for="Active">
+                        }
+                        else
+                        {
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" asp-for="Active">
+                        }
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Trạng thái</label>
+                    </div>
+                </div>
+                <div class="mb-3 w-50">
+                    <label for="formFile" class="form-label fw-bold">Ảnh sản phẩm</label>
+
+                    <div id="fileInputsContainer">
+                        <!--list input file -->
+                        <div class="row">
+                        @foreach(var image in Model.Images)
+                        {
+                                <div class="col-xl-3">
+                                    <div class="card">
+                                            <figure class="figure ">
+                                                <img src="@Url.Content(image.Path)" alt="" class="img-fluid rounded figure-img">
+                                            <input type="hidden" name="existingPathImage" value="@("/uploads/" + @image.Name)">
+                                            <input type="hidden" name="existingNameImage" value="@image.Name">
+                                            </figure>
+                                        <figcaption class="figure-caption text-center"><button type="button" class="btn text-danger fw-bolder" aria-label="Close" onclick="removeImage(this)">X</button></figcaption>
+                                    </div> 
+                                </div> 
+                        }
+                    </div>
+                    </div>
+                    <button type="button" id="addFileInputButton" class="btn btn-primary mt-3 btn-sm">Thêm ảnh</button>
+                    <span asp-validation-for="ImageFiles" class="text-danger"></span>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary">Xác nhận</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    document.getElementById('addFileInputButton').addEventListener('click', function () {
+        const newInputDiv = document.createElement('div');
+        newInputDiv.classList.add('mb-3', 'd-flex', 'align-items-center');
+
+        const newInputFile = document.createElement('input');
+        newInputFile.type = 'file';
+        newInputFile.classList.add('form-control');
+        newInputFile.id = 'formFile'
+        newInputFile.name = 'ImageFiles';
+
+        newInputDiv.appendChild(newInputFile);
+
+
+        //
+
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'X';
+        removeButton.classList.add('btn', 'btn-danger', 'ms-2');
+        removeButton.addEventListener('click', function () {
+            newInputDiv.remove(); // Xóa thẻ div chứa input
+        });
+        newInputDiv.appendChild(removeButton);
+
+        document.getElementById('fileInputsContainer').appendChild(newInputDiv);
+    });
+
+
+    function removeImage(button) {
+        
+        const card = button.closest('.card');
+        const colDiv = card.closest('.col-xl-3');
+        colDiv.remove();
+    }
+</script>

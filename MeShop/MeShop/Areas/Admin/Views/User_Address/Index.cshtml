@@ -1,0 +1,54 @@
+﻿@model IEnumerable<MeShop.Models.User_Address>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+    <div class="flex-grow-1">
+        <h4 class="fs-18 fw-semibold m-0">Danh sách địa chỉ khách hàng</h4>
+    </div>
+
+    <div class="text-end">
+        <ol class="breadcrumb m-0 py-0">
+            <li class="breadcrumb-item"><a asp-area="admin" asp-controller="users" asp-action="index">User</a></li>
+            <li class="breadcrumb-item active">Danh sách địa chỉ khách hàng</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="col-sm-12">
+                <table id="fixed-header-datatable" class="table table-striped dt-responsive nowrap table-striped w-100 dataTable no-footer dtr-inline" aria-describedby="fixed-header-datatable_info" style="width: 1264px;">
+                    <thead>
+                        <tr>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 20px;">Id</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 100px;">Khách hàng(id)</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 120px;">Tỉnh/Thành</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 80px;">Quận/Huyện</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 100px;">Phường/Xã</th>
+                            <th tabindex="0" rowspan="1" colspan="1" style="width: 250px;">Địa chỉ</th
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="even">
+                                <th scope="row">@item.Id</th>
+                                <td><a asp-controller="users" asp-action="details" asp-route-id ="@item?.User?.Id">@item?.User.Id</a></td>
+                                <td>@item?.Address_City</td>
+                                <td>@item?.Address_District</td>
+                                <td>@item?.Address_Ward</td>
+                                <td>@item?.Address_Detail</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

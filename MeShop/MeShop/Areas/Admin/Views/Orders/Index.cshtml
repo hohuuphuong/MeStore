@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Order>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+    <div class="flex-grow-1">
+        <h4 class="fs-18 fw-semibold m-0">Danh sách đơn hàng</h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div id="fixed-header-datatable_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="fixed-header-datatable" class="table table-striped dt-responsive nowrap table-striped w-100 dataTable no-footer dtr-inline" aria-describedby="fixed-header-datatable_info" style="width: 1264px;">
+                                <thead>
+                                    <tr>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 20px;">Id</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 150px;">Tên</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 100px;">SĐT</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 200px;">Địa chỉ</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 200px;">Tổng tiền</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 100px;">Phương thức thanh toán</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 120px;">Ngày đặt</th>
+                                        <th tabindex="0" rowspan="1" colspan="1" style="width: 50px;">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="even">
+                                            <th scope="row">@item.Id</th>
+                                            <td>@item.Name</td>
+                                            <td>@item.Phone</td>
+                                            <td>@item.Address_Detail</td>
+                                           
+                                            <td>@String.Format("{0:N0}", item.Total)</td>
+                                            <td>@item.Payment_Method</td>
+                                            <td>@item.Created_At</td>
+                                            <td>
+                                                <a asp-action="details" asp-route-id="@item.Id" style="color: inherit;">
+                                                    <i class="mdi mdi-details"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,134 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\MeShop\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{08DC1F29-3C34-4E6E-A03C-B2759D641306}|MeShop\\MeShop.csproj|e:\\meshop\\meshop\\views\\products\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{08DC1F29-3C34-4E6E-A03C-B2759D641306}|MeShop\\MeShop.csproj|solutionrelative:meshop\\views\\products\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08DC1F29-3C34-4E6E-A03C-B2759D641306}|MeShop\\MeShop.csproj|e:\\meshop\\meshop\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{08DC1F29-3C34-4E6E-A03C-B2759D641306}|MeShop\\MeShop.csproj|solutionrelative:meshop\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08DC1F29-3C34-4E6E-A03C-B2759D641306}|MeShop\\MeShop.csproj|e:\\meshop\\meshop\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08DC1F29-3C34-4E6E-A03C-B2759D641306}|MeShop\\MeShop.csproj|solutionrelative:meshop\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08DC1F29-3C34-4E6E-A03C-B2759D641306}|MeShop\\MeShop.csproj|e:\\meshop\\meshop\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{08DC1F29-3C34-4E6E-A03C-B2759D641306}|MeShop\\MeShop.csproj|solutionrelative:meshop\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08DC1F29-3C34-4E6E-A03C-B2759D641306}|MeShop\\MeShop.csproj|e:\\meshop\\meshop\\services\\vnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08DC1F29-3C34-4E6E-A03C-B2759D641306}|MeShop\\MeShop.csproj|solutionrelative:meshop\\services\\vnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08DC1F29-3C34-4E6E-A03C-B2759D641306}|MeShop\\MeShop.csproj|e:\\meshop\\meshop\\views\\blogs\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{08DC1F29-3C34-4E6E-A03C-B2759D641306}|MeShop\\MeShop.csproj|solutionrelative:meshop\\views\\blogs\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08DC1F29-3C34-4E6E-A03C-B2759D641306}|MeShop\\MeShop.csproj|e:\\meshop\\meshop\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08DC1F29-3C34-4E6E-A03C-B2759D641306}|MeShop\\MeShop.csproj|solutionrelative:meshop\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "E:\\MeShop\\MeShop\\Views\\Products\\Details.cshtml",
+              "RelativeDocumentMoniker": "MeShop\\Views\\Products\\Details.cshtml",
+              "ToolTip": "E:\\MeShop\\MeShop\\Views\\Products\\Details.cshtml",
+              "RelativeToolTip": "MeShop\\Views\\Products\\Details.cshtml",
+              "ViewState": "AQIAAMcAAAAAAAAAAAAAANQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-26T09:45:23.085Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\MeShop\\MeShop\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "MeShop\\Views\\Home\\Index.cshtml",
+              "ToolTip": "E:\\MeShop\\MeShop\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "MeShop\\Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-10T00:45:06.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "E:\\MeShop\\MeShop\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "MeShop\\Controllers\\HomeController.cs",
+              "ToolTip": "E:\\MeShop\\MeShop\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "MeShop\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABMAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-10T00:44:59.107Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\MeShop\\MeShop\\appsettings.json",
+              "RelativeDocumentMoniker": "MeShop\\appsettings.json",
+              "ToolTip": "E:\\MeShop\\MeShop\\appsettings.json",
+              "RelativeToolTip": "MeShop\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-09T18:06:17.608Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "VnPayService.cs",
+              "DocumentMoniker": "E:\\MeShop\\MeShop\\Services\\VnPayService.cs",
+              "RelativeDocumentMoniker": "MeShop\\Services\\VnPayService.cs",
+              "ToolTip": "E:\\MeShop\\MeShop\\Services\\VnPayService.cs",
+              "RelativeToolTip": "MeShop\\Services\\VnPayService.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAAADoAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T17:51:21.944Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PaymentController.cs",
+              "DocumentMoniker": "E:\\MeShop\\MeShop\\Controllers\\PaymentController.cs",
+              "RelativeDocumentMoniker": "MeShop\\Controllers\\PaymentController.cs",
+              "ToolTip": "E:\\MeShop\\MeShop\\Controllers\\PaymentController.cs",
+              "RelativeToolTip": "MeShop\\Controllers\\PaymentController.cs",
+              "ViewState": "AQIAAHsAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-09T17:50:34.826Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "E:\\MeShop\\MeShop\\Views\\Blogs\\Details.cshtml",
+              "RelativeDocumentMoniker": "MeShop\\Views\\Blogs\\Details.cshtml",
+              "ToolTip": "E:\\MeShop\\MeShop\\Views\\Blogs\\Details.cshtml",
+              "RelativeToolTip": "MeShop\\Views\\Blogs\\Details.cshtml",
+              "ViewState": "AQIAABQAAAAAAAAAAAAAwCwAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-24T15:17:42.544Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

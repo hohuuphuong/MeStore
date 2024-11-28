@@ -1,0 +1,70 @@
+﻿@model MeShop.Models.ViewModels.OrderVM
+
+<form asp-controller="payment" asp-action="Checkout" method="post">
+    <div class="row col-lg-12 col-md-6">
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+                <label>Họ và tên <span class="required">*</span></label>
+                <input asp-for="Name" placeholder="Nhập họ tên của bạn" type="text" class="form-control" required>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+                <label>Số điện thoại <span class="required">*</span></label>
+                <input asp-for="Phone" placeholder="Nhập số điện thoại của bạn" type="tel" class="form-control" required pattern="0[0-9]{9}" title="Số điện thoại không hợp lệ">
+            </div>
+        </div>
+    </div>
+        
+    <div class="col-lg-12 col-md-6">
+        <div class="form-group">
+            <label>Email</label>
+            <input asp-for="Email" placeholder="Theo dõi đơn hàng qua Email" type="email" class="form-control">
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12">
+        <div class="form-group">
+            <label>Địa chỉ <span class="required">*</span></label>
+            <input required asp-for="Address_Detail" placeholder="Địa chỉ(ví dụ: 10 Văn Cao,phường Thụy Khuê)" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12">
+        <div class="form-group">
+            <div class="select-box">
+                <select required asp-for="Address_City" class="form-control" style="display: none;" id="city">
+                    <option value="" selected>Chọn Tỉnh/Thành</option>
+                </select>
+                <select required asp-for="Address_District" class="form-control" id="district" >
+                    <option value="" selected>Chọn Quận/Huyện</option>
+                </select>
+
+                <select required asp-for="Address_Ward" class="form-control" id="ward">
+                    <option value="" selected>Chọn Phường/Xã</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12">
+        <div class="form-group">
+            <textarea asp-for="Oder_Note" id="notes" cols="30" rows="2" placeholder="Ghi chú thêm" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12">
+        <div class="order-details">
+            <div class="payment-box">
+                <h4>Hình thức thanh toán</h4>
+                <div class="payment-method">
+                    <p>
+                        <input checked type="radio" id="cod" name="Payment_Method" value="COD">
+                        <label for="cod">COD</label>Thanh toán khi nhận hàng
+                    </p>
+                    <p>
+                        <input type="radio" id="vnpay" name="Payment_Method" value="VNPAY">
+                        <label for="vnpay">Ví điện tử VNPAY</label>QR Code thanh toán qua ngân hàng
+                    </p>
+                </div>
+                <button class="default-btn" type="submit">ĐẶT HÀNG</button>
+            </div>
+        </div>
+    </div>
+</form>

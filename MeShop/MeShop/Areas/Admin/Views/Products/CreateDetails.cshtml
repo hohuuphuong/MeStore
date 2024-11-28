@@ -1,0 +1,63 @@
+﻿@model MeShop.Models.ViewModels.Product_SizeVM
+
+@{
+    ViewData["Title"] = "CreateDetails";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
+    <div class="flex-grow-1">
+        <h4 class="fs-18 fw-semibold m-0">Thêm chi tiết sản phẩm</h4>
+    </div>
+
+    <div class="text-end">
+        <ol class="breadcrumb m-0 py-0">
+            <li class="breadcrumb-item"><a asp-area="admin" asp-controller="products" asp-action="index">Sản phẩm</a></li>
+            <li class="breadcrumb-item active">Chi tiết sản phẩm</li>
+            <li class="breadcrumb-item active">Thêm chi tiết sản phẩm</li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <form asp-action="CreateDetails" method="post">
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <label for="Name" class="form-label fw-bold">Tên sản phẩm</label>
+                            <input readonly value="@ViewData["Product_Name"]" asp-for="Product_Name" class="form-control" id="Name" style="background-color: #e0e0e0;">
+                            <span asp-validation-for="Product_Name" class="text-danger"></span>
+                        </div>
+                        <div class="col-lg-3">
+                            <input value="@ViewData["Product_Id"]" asp-for="Product_Id" type="text" class="form-control" id="id" readonly type="hidden" style="background-color: #e0e0e0;" >
+                            <span asp-validation-for="Product_Id" class="text-danger"></span>
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <label for="Quantity" class="form-label fw-bold">Số lượng</label>
+                            <input asp-for="Quantity" type="number" class="form-control" id="Quantity">
+                            <span asp-validation-for="Quantity" class="text-danger"></span>
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="Size_Id" class="form-label fw-bold">Size</label>
+                            <select asp-for="Size_Id" class="form-control" asp-items="ViewBag.Size_Id"></select>
+                            <span asp-validation-for="Size_Id" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-primary">Lưu</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+

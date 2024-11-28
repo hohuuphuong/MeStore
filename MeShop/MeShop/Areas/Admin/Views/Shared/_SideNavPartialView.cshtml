@@ -1,0 +1,109 @@
+﻿<div class="app-sidebar-menu">
+    <div class="h-100" data-simplebar>
+
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+
+            <div class="logo-box">
+                <a asp-area="admin" asp-controller="home" asp-action="index" class="logo logo-light">
+                    <span class="logo-lg">
+                       <img src="~/adminassets/images/MeStoreLogo.png" alt="" height="35">
+                    </span>
+                </a>
+              
+            </div>
+
+            <ul id="side-menu">
+
+                <li class="menu-title">Menu</li>
+
+                <li>
+                    <a asp-area="admin" asp-controller="Home" asp-action="index">
+                        <i data-feather="home"></i>
+                        <span> Dashboard </span>
+                    </a>
+                </li>
+
+                <li class="menu-title">Quản lý</li>
+
+                <li>
+                    <a href="#sidebarAdmin" data-bs-toggle="collapse">
+                        <i data-feather="user"></i>
+                        <span> Admin </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarAdmin">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a asp-area="admin" asp-controller="adminusers" asp-action="index">Danh sách tài khoản</a>
+                            </li>
+                            <li>
+                                <a asp-area="admin" asp-controller="adminusers" asp-action="create">Tạo tài khoản Admin</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#sidebarUser" data-bs-toggle="collapse">
+                        <i data-feather="users"></i>
+                        <span> Khách hàng </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarUser">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a asp-area="admin" asp-controller="users" asp-action="index">Danh sách tài khoản</a>
+                            </li>
+                            <li>
+                                <a asp-area="admin" asp-controller="user_address" asp-action="index">Địa chỉ khách hàng</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#sidebarProduct" data-bs-toggle="collapse">
+                        <i data-feather="package"></i>
+                        <span> Sản phẩm </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarProduct">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a asp-area="admin" asp-controller="products" asp-action="index">Danh sách sản phẩm</a>
+                            </li>
+                            <li>
+                                <a asp-area="admin" asp-controller="product_category" asp-action="index">Danh mục sản phẩm</a>
+                            </li>
+                            <li>
+                                <a asp-area="admin" asp-controller="discounts" asp-action="index">Mã giảm giá</a>
+                            </li>
+                            <li>
+                                <a asp-area="admin" asp-controller="sizes" asp-action="index">Size</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a asp-controller="blogs" asp-action="index">
+                        <i data-feather="book"></i>
+                        <span> Tin tức </span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="orders" asp-action="index">
+                        <i data-feather="clipboard"></i>
+                        <span> Đơn hàng </span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+        <!-- End Sidebar -->
+
+        <div class="clearfix"></div>
+
+    </div>
+</div>
